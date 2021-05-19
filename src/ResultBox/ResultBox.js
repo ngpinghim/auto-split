@@ -46,7 +46,7 @@ const ResultBox = (props) => {
       <Form>
         <Form.Group controlId="result">
           <Form.Label>Result</Form.Label>
-          <Form.Control as="textarea" ref={resultBoxRef} onClick={handleClick} value={resultText} readOnly rows="20" title="Click to copy" className={styles.textarea} />
+          <Form.Control as="textarea" ref={resultBoxRef} onClick={handleClick} value={resultText} readOnly rows={props.screenWidth >= 576 ? 20 : 5} title="Click to copy" className={styles.textarea} />
         </Form.Group>
       </Form>
     </>

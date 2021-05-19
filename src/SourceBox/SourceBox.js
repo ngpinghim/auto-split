@@ -8,7 +8,7 @@ const SourceBox = (props) => {
       <Form>
         <Form.Group controlId="source">
           <Form.Label>Source</Form.Label>
-          <Form.Control as="textarea" onChange={props.handleKeyDown} rows="20" className={styles.textarea} />
+          <Form.Control as="textarea" onChange={props.handleKeyDown} rows={props.screenWidth >= 576 ? 20 : 5} className={styles.textarea} />
         </Form.Group>
       </Form>
     </>

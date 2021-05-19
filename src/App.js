@@ -19,13 +19,15 @@ function App() {
   const $sourceText = new Subject();
   const $limit = new Subject();
 
+  const screenWidth = window.screen.width;
+
   $sourceText
     .pipe(debounceTime(500))
     .subscribe((value) => setSourceText(value));
 
   $limit
     // .pipe(debounceTime(500))
-    .subscribe((value) => setLimit(+value || 0));
+    .subscribe((value) => setLimit(+value || 1));
 
   const handleLimitChange = (event) => {
       $limit.next(event.target.value || '');
@@ -44,13 +46,13 @@ function App() {
         <Col>
           <Form.Group controlId="appMaxLength">
             <Form.Label>Max length</Form.Label>
-            <Form.Control type="number" placeholder="Max length" value={limit} min="0" onChange={handleLimitChange} />
+            <Form.Control type="number" placeholder="Max length" value={limit} min="1" onChange={handleLimitChange} />
           </Form.Group>
         </Col>
       </Row>
       <Row>
-        <Col><SourceBox handleKeyDown={handleSourceTextChange} /></Col>
-        <Col><ResultBox sourceText={sourceText} limit={limit} delimiter={DELIMITER} /></Col>
+        <Col sm><SourceBox handleKeyDown={handleSourceTextChange} screenWidth={screenWidth} /></Col>
+        <Col sm><ResultBox sourceText={sourceText} limit={limit} delimiter={DELIMITER} screenWidth={screenWidth} /></Col>
       </Row>
     </Container>
 
